@@ -6,7 +6,7 @@ const messageRoutes = require("./routes/messageRoutes")
 const app = express();
 const socket = require("socket.io")
 
-PORT = 5000
+PORT = process.env.PORT || 5000
 MONGO_URL = "mongodb+srv://AlexD:AlexD123@cluster0.tbzrhxj.mongodb.net/?retryWrites=true&w=majority"
 
 
