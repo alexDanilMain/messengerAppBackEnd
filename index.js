@@ -6,6 +6,8 @@ const messageRoutes = require("./routes/messageRoutes")
 const app = express();
 const socket = require("socket.io")
 
+require("dotenv").config()
+
 PORT = process.env.PORT || 5000
 MONGO_URL = process.env.MONGOURL
 
