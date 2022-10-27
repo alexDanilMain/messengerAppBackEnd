@@ -7,7 +7,7 @@ const app = express();
 const socket = require("socket.io")
 
 PORT = process.env.PORT || 5000
-MONGO_URL = "mongodb+srv://AlexD:AlexD123@cluster0.tbzrhxj.mongodb.net/?retryWrites=true&w=majority"
+MONGO_URL = process.env.MONGOURL
 
 
 app.use(cors());
