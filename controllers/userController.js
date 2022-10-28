@@ -5,18 +5,18 @@ const bcrypt = require("bcrypt")
 module.exports.register = async (req, res, next) => {
     try{
         const {username, email , password}  = req.body;
-        const usernameCheck = await Users.findOne({username})
+        const usernameCheck = await Users.findOne({username : username.toLowerCase})
         if(usernameCheck){
             return res.json({msg:" Username Already used", status: false} )
         }
-        const emailCheck = await Users.findOne({email})
+        const emailCheck = await Users.findOne({email:email.toLowerCase})
         if(emailCheck){
             return res.json({msg:" Email Already used", status: false} )
         }
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = await Users.create({
-            email,
-            username,
+            email: email.toLowerCase(),
+            username : username.toLowerCase(),
             password : hashedPassword,
             profilePic : 0,
             profilePicColor : "black",
@@ -34,7 +34,7 @@ module.exports.register = async (req, res, next) => {
 module.exports.login = async (req, res, next) => {
     try{
         const {username, password}  = req.body;
-        const user = await Users.findOne({username})
+        const user = await Users.findOne({username: username.toLowerCase()})
         if(!user){
             return res.json({msg:" Incorrect username or password", status: false} )
         }
